@@ -1,3 +1,4 @@
 config.py
+gcs_creds.json
 .gitsecret/keys/random_seed
 !*.secret

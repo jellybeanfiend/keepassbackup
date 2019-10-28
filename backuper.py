@@ -17,8 +17,6 @@ def list_files_in_dropbox_folder(dbx):
         print(entry.name)
     return [entry.name for entry in result.entries]
     
-
-
 def download_from_dropbox(dbx):
     dropbox_file_path = os.path.join(config.DROPBOX_KEEPASS_DIR, config.KEEPASS_FILENAME)
     local_file_path = os.path.join(config.LOCAL_KEEPASS_DIR, config.KEEPASS_FILENAME)
@@ -33,6 +31,7 @@ def download_from_dropbox(dbx):
     return local_file_path
 
 def upload_to_gcs(local_file_name, target_file_name):
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = config.GCE_CREDS_FILE_PATH
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(config.GCS_BUCKET_NAME)
 
